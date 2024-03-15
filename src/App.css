@@ -1,0 +1,41 @@
+.text-orange {
+  color: #525ceb;
+}
+.btn {
+  background-color: #525ceb !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  border: none !important;
+}
+
+.w-full {
+  width: 100% !important;
+}
+
+.todo-container {
+  max-width: 1200px;
+  margin: 10px auto;
+  width: 100%;
+}
+
+.todo-title {
+  width: 100%;
+}
+
+.todo-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 250px 0 rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 768px) {
+  .add-btn-text {
+    display: none;
+  }
+}
