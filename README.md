@@ -37,3 +37,7 @@ This is a simple todo application built with React and Redux for managing tasks.
 3. UI Framework: Ant Design
 4. Local Storage: redux-persist
 5. Development: Vite, ESLint, TypeScript
+
+### Live Link
+
+[Click here to view the live demo](https://todo-two-ruby.vercel.app)
