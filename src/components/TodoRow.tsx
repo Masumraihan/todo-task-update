@@ -20,21 +20,18 @@ const TodoRow = ({ todo }: TTodoRowProps) => {
   const menuItems: MenuProps["items"] = [
     {
       key: "1",
-      label: (
-        <span
-          onClick={() =>
-            dispatch(updateTodo({ id: todo.id, data: { status: todoStatus.completed } }))
-          }
-          style={{ color: "green" }}
-        >
-          Completed
-        </span>
-      ),
+      label: <span style={{ color: "green" }}>Completed</span>,
+      onClick: () => {
+        dispatch(updateTodo({ id: todo.id, data: { status: todoStatus.completed } }));
+      },
     },
     {
       key: "2",
-      label: <span onClick={() => dispatch(deleteTodo({ id: todo.id }))}>Delete</span>,
+      label: <span>Delete</span>,
       style: { color: "red" },
+      onClick: () => {
+        dispatch(deleteTodo({ id: todo.id }));
+      },
     },
   ];
 

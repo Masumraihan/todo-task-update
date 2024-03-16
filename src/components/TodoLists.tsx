@@ -73,7 +73,10 @@ const TodoLists = () => {
       ) : (
         <div style={{ maxWidth: "1200px", margin: "10px auto", width: "100%" }}>
           {todos.length === 0 ? (
-            <h2 style={{ textAlign: "center", color: "gray" }}>Empty</h2>
+            <>
+              <h2 style={{ textAlign: "center", color: "gray" }}>Empty</h2>
+              <h2 style={{ textAlign: "center", color: "gray" }}>Todo Please add a task</h2>
+            </>
           ) : (
             <div>
               <Flex

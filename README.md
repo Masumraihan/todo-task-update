@@ -1,31 +1,39 @@
-# React + TypeScript + Vite
+## Todo App - React & Redux
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple todo application built with React and Redux for managing tasks. It allows users to add, update, delete, and view their todos. Data is persisted locally using React Persist.
 
-Currently, two official plugins are available:
+### Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add new todos
+- Update existing todos
+- Delete todos
+- View all todos
+- Local storage persistence for data
 
-## Expanding the ESLint configuration
+### Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Clone this repository or download the project files.
+2. Install the required dependencies:
 
-- Configure the top-level `parserOptions` property like this:
+   ```bash
+   npm install
+   Usage
+   Start the development server:
+   npm run dev
+   ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Usage
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# todo-task-update
+1. Add new todos
+2. Update existing todos
+3. Delete todos
+4. View all todos
+5. Local storage persistence for data
+
+### Technologies
+
+1. Frontend: React, React Hooks
+2. State Management: Redux, Redux Persist
+3. UI Framework: Ant Design
+4. Local Storage: redux-persist
+5. Development: Vite, ESLint, TypeScript
