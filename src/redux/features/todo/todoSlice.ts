@@ -12,7 +12,21 @@ const todoSlice = createSlice({
     addTodo: (state, { payload }) => {
       state.todoList.push(payload);
     },
+    updateTodo: (state, { payload }) => {
+      const todo = state.todoList.findIndex((todo) => todo.id === payload.id);
+      console.log(todo);
+      if (todo !== -1) {
+        console.log("payload =>", payload);
+        state.todoList[todo] = payload;
+      }
+    },
+    deleteTodo: (state, { payload }) => {
+      const todo = state.todoList.findIndex((todo) => todo.id === payload);
+      if (todo !== -1) {
+        state.todoList.splice(todo, 1);
+      }
+    },
   },
 });
-export const { addTodo } = todoSlice.actions;
+export const { addTodo, updateTodo } = todoSlice.actions;
 export default todoSlice.reducer;
