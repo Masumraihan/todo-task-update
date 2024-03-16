@@ -63,6 +63,10 @@
   flex-direction: column;
   gap: 5px;
 }
+.list-item {
+  cursor: pointer;
+  display: flex;
+}
 
 @media only screen and (max-width: 768px) {
   .add-btn-text {
@@ -70,6 +74,9 @@
   }
   .todo-title {
     margin-bottom: 5px;
+  }
+  .header {
+    display: none;
   }
   .todo {
     flex-direction: column;

@@ -11,7 +11,7 @@ import TodoSelect from "./Forms/TodoSelect";
 import { TTodo } from "../types";
 import { useAppDispatch } from "../redux/hooks";
 import { addTodo } from "../redux/features/todo/todoSlice";
-import TodoTextArea from "./TodoTextArea";
+import TodoTextArea from "./Forms/TodoTextArea";
 import Swal from "sweetalert2";
 
 type TAddTodoProps = {
@@ -45,7 +45,7 @@ const AddTodoModel = ({ isOpen, setIsOpen }: TAddTodoProps) => {
     };
     dispatch(addTodo(todo));
     setIsOpen(false);
-    
+
     Swal.fire({
       title: "Todo Added Successfully",
       text: ` ${todo.title} Added Successfully`,

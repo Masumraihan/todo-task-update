@@ -8,7 +8,7 @@ import { TTodo } from "../types";
 import TodoForm from "./Forms/TodoForm";
 import TodoInput from "./Forms/TodoInput";
 import TodoSelect from "./Forms/TodoSelect";
-import TodoTextArea from "./TodoTextArea";
+import TodoTextArea from "./Forms/TodoTextArea";
 import Swal from "sweetalert2";
 
 type TUpdateTodoProps = {

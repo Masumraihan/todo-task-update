@@ -90,6 +90,24 @@ const TodoLists = () => {
                   </Button>
                 </TodoDropDown>
               </Flex>
+              <div className='todo header'>
+                <p style={{ fontWeight: "bold" }}>Title</p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Status
+                </p>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  Priority
+                </p>
+                <p>Actions</p>
+              </div>
               {filteredTodos(filterBy).map((todo) => (
                 <TodoRow todo={todo} key={todo.id} />
               ))}
