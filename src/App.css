@@ -68,4 +68,15 @@
   .add-btn-text {
     display: none;
   }
+  .todo-title {
+    margin-bottom: 5px;
+  }
+  .todo {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .todo-count-wrapper {
+    padding: 0 10px;
+    gap: 10px !important;
+  }
 }

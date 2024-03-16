@@ -76,7 +76,12 @@ const TodoLists = () => {
             <h2 style={{ textAlign: "center", color: "gray" }}>Empty</h2>
           ) : (
             <div>
-              <Flex align='center' gap={20} style={{ marginBottom: "10px" }}>
+              <Flex
+                align='center'
+                gap={20}
+                className='todo-count-wrapper'
+                style={{ marginBottom: "10px" }}
+              >
                 <p className='todo-count'>Total Task : {todos.length}</p>
                 <p className='todo-count'>Total Completed Task : {completedTodos.length}</p>
                 <TodoDropDown items={items}>

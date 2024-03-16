@@ -1,3 +1,4 @@
+import { ChevronLeft } from "lucide-react";
 import { todoPriority, todoStatus } from "../constant";
 import { showDetails } from "../redux/features/todoDetails/todoDetailsSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -9,7 +10,18 @@ const TodoDetails = () => {
   const dispatch = useAppDispatch();
   return (
     <div className='todo-details-container'>
-      <p onClick={() => dispatch(showDetails({ showDetails: false, todoId: "" }))}>Back</p>
+      <p
+        onClick={() => dispatch(showDetails({ showDetails: false, todoId: "" }))}
+        style={{
+          cursor: "pointer",
+          fontWeight: "bold",
+          display: "flex",
+          alignItems: "center",
+          gap: "5px",
+        }}
+      >
+        <ChevronLeft /> Back
+      </p>
       <p>Todo Title: {todo?.title}</p>
       <p>
         Todo Priority:{" "}
