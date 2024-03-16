@@ -11,6 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import todoReducers from "./features/todo/todoSlice";
+import todoDetailsReducers from "./features/todoDetails/todoDetailsSlice";
 
 const persistConfig = {
   key: "todo",
@@ -22,6 +23,7 @@ const persistedReducer = persistReducer(persistConfig, todoReducers);
 const store = configureStore({
   reducer: {
     todo: persistedReducer,
+    todoDetails: todoDetailsReducers,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({

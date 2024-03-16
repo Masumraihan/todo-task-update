@@ -12,6 +12,7 @@ const todoSlice = createSlice({
     addTodo: (state, { payload }) => {
       state.todoList.push(payload);
     },
+
     updateTodo: (state, actions: PayloadAction<{ id: string; data: Partial<TTodo> }>) => {
       const todo = state.todoList.find((todo) => todo.id === actions.payload.id);
       if (todo) {

@@ -23,10 +23,9 @@ const TodoForm = ({ children, onsubmit, defaultValues, resolver }: TTodoFormProp
     formConfig["defaultValues"] = defaultValues;
   }
 
-
-
   const submit: SubmitHandler<FieldValues> = (data) => {
     onsubmit(data);
+    methods.reset();
   };
 
   const methods = useForm(formConfig);

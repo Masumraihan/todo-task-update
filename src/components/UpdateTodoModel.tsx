@@ -8,6 +8,8 @@ import { TTodo } from "../types";
 import TodoForm from "./Forms/TodoForm";
 import TodoInput from "./Forms/TodoInput";
 import TodoSelect from "./Forms/TodoSelect";
+import TodoTextArea from "./TodoTextArea";
+import Swal from "sweetalert2";
 
 type TUpdateTodoProps = {
   isOpen: boolean;
@@ -26,9 +28,15 @@ const UpdateTodo = ({ isOpen, setIsOpen, todo }: TUpdateTodoProps) => {
     const todoData: Partial<TTodo> = {
       priority: data.priority || todo.priority,
       title: data.title || todo.title,
+      description: data.description || todo.description,
     };
     dispatch(updateTodo({ id: todo.id, data: todoData }));
     setIsOpen(false);
+    Swal.fire({
+      title: "Updated Successfully",
+      text: ` ${todo.title} Updated Successfully`,
+      icon: "success",
+    });
   };
   return (
     <>
@@ -40,6 +48,12 @@ const UpdateTodo = ({ isOpen, setIsOpen, todo }: TUpdateTodoProps) => {
       >
         <TodoForm onsubmit={handleSubmit}>
           <TodoInput defaultValue={todo.title} name='title' label='Title' type='text' id='title' />
+          <TodoTextArea
+            defaultValue={todo.description}
+            name='description'
+            label='Description'
+            id='description'
+          />
           <TodoSelect
             defaultValue={todo.priority}
             options={todoPriorityOptions}

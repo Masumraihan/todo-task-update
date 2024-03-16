@@ -1,14 +1,19 @@
 import { MenuProps } from "antd";
-import { EllipsisVertical } from "lucide-react";
+import { EllipsisVertical, Expand } from "lucide-react";
 import { useState } from "react";
 import { todoPriority, todoStatus } from "../constant";
+import { deleteTodo, updateTodo } from "../redux/features/todo/todoSlice";
+import { showDetails } from "../redux/features/todoDetails/todoDetailsSlice";
+import { useAppDispatch } from "../redux/hooks";
 import { TTodo } from "../types";
 import TodoDropDown from "./TodoDropDown";
 import UpdateTodo from "./UpdateTodoModel";
-import { useAppDispatch } from "../redux/hooks";
-import { deleteTodo, updateTodo } from "../redux/features/todo/todoSlice";
 
-const TodoRow = ({ todo }: { todo: TTodo }) => {
+type TTodoRowProps = {
+  todo: TTodo;
+};
+
+const TodoRow = ({ todo }: TTodoRowProps) => {
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -32,6 +37,10 @@ const TodoRow = ({ todo }: { todo: TTodo }) => {
       style: { color: "red" },
     },
   ];
+
+  const handleShowDetails = () => {
+    dispatch(showDetails({ showDetails: true, todoId: todo.id }));
+  };
 
   return (
     <div key={todo.id} className='todo'>
@@ -74,6 +83,9 @@ const TodoRow = ({ todo }: { todo: TTodo }) => {
         {todo.priority}
       </p>
       <div style={{ display: "flex", gap: "30px", alignItems: "center" }}>
+        <p style={{ cursor: "pointer" }}>
+          <Expand size={16} color='#525ceb' onClick={handleShowDetails} />
+        </p>
         <p style={{ cursor: "pointer" }} onClick={() => setOpen(true)}>
           <svg
             width='25'

@@ -5,12 +5,14 @@ import { useAppSelector } from "../redux/hooks";
 import TodoRow from "./TodoRow";
 import { useState } from "react";
 import TodoDropDown from "./TodoDropDown";
+import TodoDetails from "./TodoDetails";
 
 const TodoLists = () => {
   const [filterBy, setFilterBy] = useState<string | null>(null);
   const todos = useAppSelector((state) => state.todo.todoList);
   const completedTodos = todos.filter((todo) => todo.status === todoStatus.completed);
 
+  const showDetails = useAppSelector((state) => state.todoDetails.showDetails);
   const filteredTodos = (filterBy: string | null) => {
     if (!filterBy) {
       return todos;
@@ -65,26 +67,32 @@ const TodoLists = () => {
   ];
 
   return (
-    <div style={{ maxWidth: "1200px", margin: "10px auto", width: "100%" }}>
-      {todos.length === 0 ? (
-        <h2 style={{ textAlign: "center", color: "gray" }}>Empty</h2>
+    <>
+      {showDetails ? (
+        <TodoDetails />
       ) : (
-        <div>
-          <Flex align='center' gap={20} style={{ marginBottom: "10px" }}>
-            <p className='todo-count'>Total Task : {todos.length}</p>
-            <p className='todo-count'>Total Completed Task : {completedTodos.length}</p>
-            <TodoDropDown items={items}>
-              <Button className='btn' style={{ marginLeft: "auto" }}>
-                {filterBy ? filterBy : "Filter By"} <ListFilter size={20} />
-              </Button>
-            </TodoDropDown>
-          </Flex>
-          {filteredTodos(filterBy).map((todo) => (
-            <TodoRow todo={todo} key={todo.id} />
-          ))}
+        <div style={{ maxWidth: "1200px", margin: "10px auto", width: "100%" }}>
+          {todos.length === 0 ? (
+            <h2 style={{ textAlign: "center", color: "gray" }}>Empty</h2>
+          ) : (
+            <div>
+              <Flex align='center' gap={20} style={{ marginBottom: "10px" }}>
+                <p className='todo-count'>Total Task : {todos.length}</p>
+                <p className='todo-count'>Total Completed Task : {completedTodos.length}</p>
+                <TodoDropDown items={items}>
+                  <Button className='btn' style={{ marginLeft: "auto" }}>
+                    {filterBy ? filterBy : "Filter By"} <ListFilter size={20} />
+                  </Button>
+                </TodoDropDown>
+              </Flex>
+              {filteredTodos(filterBy).map((todo) => (
+                <TodoRow todo={todo} key={todo.id} />
+              ))}
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
