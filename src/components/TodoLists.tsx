@@ -1,12 +1,69 @@
-import { Button, Flex } from "antd";
+import { Button, Flex, MenuProps } from "antd";
 import { ListFilter } from "lucide-react";
-import { todoStatus } from "../constant";
+import { todoPriority, todoStatus } from "../constant";
 import { useAppSelector } from "../redux/hooks";
 import TodoRow from "./TodoRow";
+import { useState } from "react";
+import TodoDropDown from "./TodoDropDown";
 
 const TodoLists = () => {
+  const [filterBy, setFilterBy] = useState<string | null>(null);
   const todos = useAppSelector((state) => state.todo.todoList);
   const completedTodos = todos.filter((todo) => todo.status === todoStatus.completed);
+
+  const filteredTodos = (filterBy: string | null) => {
+    if (!filterBy) {
+      return todos;
+    } else {
+      return todos.filter((todo) => todo.priority === filterBy || todo.status === filterBy);
+    }
+  };
+
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: <span>All</span>,
+      onClick: () => {
+        setFilterBy(null);
+      },
+    },
+    {
+      key: "2",
+      label: <span>Completed</span>,
+      onClick: () => {
+        setFilterBy(todoStatus.completed);
+      },
+    },
+    {
+      key: "3",
+      label: <span>Incomplete</span>,
+      onClick: () => {
+        setFilterBy(todoStatus.incomplete);
+      },
+    },
+    {
+      key: "4",
+      label: <span>High</span>,
+      onClick: () => {
+        setFilterBy(todoPriority.high);
+      },
+    },
+    {
+      key: "5",
+      label: <span>Low</span>,
+      onClick: () => {
+        setFilterBy(todoPriority.low);
+      },
+    },
+    {
+      key: "6",
+      label: <span>Medium</span>,
+      onClick: () => {
+        setFilterBy(todoPriority.medium);
+      },
+    },
+  ];
+
   return (
     <div style={{ maxWidth: "1200px", margin: "10px auto", width: "100%" }}>
       {todos.length === 0 ? (
@@ -16,11 +73,13 @@ const TodoLists = () => {
           <Flex align='center' gap={20} style={{ marginBottom: "10px" }}>
             <p className='todo-count'>Total Task : {todos.length}</p>
             <p className='todo-count'>Total Completed Task : {completedTodos.length}</p>
-            <Button className='btn' style={{ marginLeft: "auto" }}>
-              Filter <ListFilter size={20} />
-            </Button>
+            <TodoDropDown items={items}>
+              <Button className='btn' style={{ marginLeft: "auto" }}>
+                {filterBy ? filterBy : "Filter By"} <ListFilter size={20} />
+              </Button>
+            </TodoDropDown>
           </Flex>
-          {todos.map((todo) => (
+          {filteredTodos(filterBy).map((todo) => (
             <TodoRow todo={todo} key={todo.id} />
           ))}
         </div>

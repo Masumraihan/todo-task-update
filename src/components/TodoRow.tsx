@@ -6,6 +6,7 @@ import { TTodo } from "../types";
 import TodoDropDown from "./TodoDropDown";
 import UpdateTodo from "./UpdateTodoModel";
 import { useAppDispatch } from "../redux/hooks";
+import { deleteTodo, updateTodo } from "../redux/features/todo/todoSlice";
 
 const TodoRow = ({ todo }: { todo: TTodo }) => {
   const [open, setOpen] = useState(false);
@@ -14,11 +15,20 @@ const TodoRow = ({ todo }: { todo: TTodo }) => {
   const menuItems: MenuProps["items"] = [
     {
       key: "1",
-      label: <span style={{ color: "green" }}>Completed</span>,
+      label: (
+        <span
+          onClick={() =>
+            dispatch(updateTodo({ id: todo.id, data: { status: todoStatus.completed } }))
+          }
+          style={{ color: "green" }}
+        >
+          Completed
+        </span>
+      ),
     },
     {
       key: "2",
-      label: <span>Delete</span>,
+      label: <span onClick={() => dispatch(deleteTodo({ id: todo.id }))}>Delete</span>,
       style: { color: "red" },
     },
   ];
