@@ -5,20 +5,23 @@ import { todoPriority, todoStatus } from "../constant";
 import { TTodo } from "../types";
 import TodoDropDown from "./TodoDropDown";
 import UpdateTodo from "./UpdateTodoModel";
-
-const menuItems: MenuProps["items"] = [
-  {
-    key: "1",
-    label: <span style={{ color: "#525ceb" }}>1st menu item</span>,
-  },
-  {
-    key: "2",
-    label: "2nd menu item",
-  },
-];
+import { useAppDispatch } from "../redux/hooks";
 
 const TodoRow = ({ todo }: { todo: TTodo }) => {
   const [open, setOpen] = useState(false);
+  const dispatch = useAppDispatch();
+
+  const menuItems: MenuProps["items"] = [
+    {
+      key: "1",
+      label: <span style={{ color: "green" }}>Completed</span>,
+    },
+    {
+      key: "2",
+      label: <span>Delete</span>,
+      style: { color: "red" },
+    },
+  ];
 
   return (
     <div key={todo.id} className='todo'>

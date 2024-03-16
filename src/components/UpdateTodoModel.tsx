@@ -1,7 +1,7 @@
 import { Button, Modal } from "antd";
 import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { todoPriority, todoStatus } from "../constant";
+import { todoPriority } from "../constant";
 import { updateTodo } from "../redux/features/todo/todoSlice";
 import { useAppDispatch } from "../redux/hooks";
 import { TTodo } from "../types";
@@ -24,12 +24,10 @@ const UpdateTodo = ({ isOpen, setIsOpen, todo }: TUpdateTodoProps) => {
 
   const handleSubmit: SubmitHandler<FieldValues> = (data) => {
     const todoData: Partial<TTodo> = {
-      id: todo.id,
       priority: data.priority || todo.priority,
-      status: todoStatus.incomplete || todo.status,
       title: data.title || todo.title,
     };
-    dispatch(updateTodo(todoData));
+    dispatch(updateTodo({ id: todo.id, data: todoData }));
     setIsOpen(false);
   };
   return (

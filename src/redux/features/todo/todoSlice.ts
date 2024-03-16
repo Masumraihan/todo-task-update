@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { TTodo } from "../../../types";
 
 const initialState: { todoList: TTodo[] } = {
@@ -12,12 +12,14 @@ const todoSlice = createSlice({
     addTodo: (state, { payload }) => {
       state.todoList.push(payload);
     },
-    updateTodo: (state, { payload }) => {
-      const todo = state.todoList.findIndex((todo) => todo.id === payload.id);
-      console.log(todo);
-      if (todo !== -1) {
-        console.log("payload =>", payload);
-        state.todoList[todo] = payload;
+    updateTodo: (state, actions: PayloadAction<{ id: string; data: Partial<TTodo> }>) => {
+      const todo = state.todoList.find((todo) => todo.id === actions.payload.id);
+      if (todo) {
+        Object.keys(actions.payload.data).forEach((key) => {
+          const todoKey = key as keyof TTodo;
+          const newValue = actions.payload.data[todoKey] ?? todo[todoKey];
+          todo[todoKey] = newValue;
+        });
       }
     },
     deleteTodo: (state, { payload }) => {
