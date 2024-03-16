@@ -1,6 +1,7 @@
 import { Input, List } from "antd";
-import { useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { useState } from "react";
+import { showDetails } from "../redux/features/todoDetails/todoDetailsSlice";
 
 const TodoSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -11,6 +12,13 @@ const TodoSearch = () => {
       todo.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       todo.description.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+
+  const dispatch = useAppDispatch();
+
+  const handleShowDetails = (id: string) => {
+    setSearchTerm("");
+    dispatch(showDetails({ showDetails: true, todoId: id }));
+  };
 
   return (
     <>
@@ -49,7 +57,11 @@ const TodoSearch = () => {
           bordered
           dataSource={filteredTodos}
           renderItem={(item) => (
-            <List.Item key={item.id} className='list-item'>
+            <List.Item
+              onClick={() => handleShowDetails(item.id)}
+              key={item.id}
+              className='list-item'
+            >
               <p>{item.title}</p>
               <p style={{ color: "gray", fontSize: "12px" }}>{item.description}</p>
             </List.Item>
